@@ -1,33 +1,72 @@
+ // ITERATION 1:
 class Chronometer {
   constructor() {
-    // ... your code goes here
+    this.currentTime = 0;
+    this.intervalId = null;  
   }
 
+  //ITERATION 2;
   start(printTimeCallback) {
-    // ... your code goes here
-  }
+    this.intervalId = setInterval(() => {
+      this.currentTime++;
 
-  getMinutes() {
-    // ... your code goes here
-  }
+      if (printTimeCallback) {
+        printTimeCallback();
+      }
+    }, 1000);}
 
-  getSeconds() {
-    // ... your code goes here
-  }
+    //ITERATION 3
+    getMinutes() {
+      return Math.floor(this.currentTime / 60);
+     }
 
-  computeTwoDigitNumber(value) {
-    // ... your code goes here
-  }
+     //ITERATION 4
 
-  stop() {
-    // ... your code goes here
-  }
+     getSeconds() {
+      return this.currentTime % 60
+    }
 
-  reset() {
-    // ... your code goes here
-  }
+    //BONUS CENTISECONDS CLASS
+      // getCentiseconds() {
+        // let centiseconds = Math.floor((this.getTime() % 1000) / 10); // Assuming you have a getTime() method that returns the total time in milliseconds
+           //return centiseconds;}
 
-  split() {
-    // ... your code goes here
-  }
-}
+  //ITERATION 5
+    computeTwoDigitNumber(value) {
+      let twoDigit = value.toString();
+  
+      if (twoDigit.length === 2) {
+        return twoDigit;
+      } else if (twoDigit.length === 1) {
+        return '0' + twoDigit;
+      }
+    }
+    
+    //ITERATION 6
+    stop() {
+      clearInterval(this.intervalId);}
+
+      //ITERATION 7
+      reset() {
+        this.currentTime = 0;
+      }
+
+      //ITERATION 8: BONUS
+      split() {
+        let minutes = this.getMinutes();
+        let seconds = this.getSeconds();
+            
+        return `${this.computeTwoDigitNumber(minutes)}:${this.computeTwoDigitNumber(seconds)}`;
+          }
+        }
+
+        //ITERATION 9: BONUS (NOT TESTED ON JASMIN SO I WILL PUT IT AS A COMMENT)
+        
+        // split() {
+          // let minutes = this.getMinutes();
+          //let seconds = this.getSeconds();
+          //let centiseconds = this.getCentiseconds();
+          
+            //return `${this.computeTwoDigitNumber(minutes)}:${this.computeTwoDigitNumber(seconds)}:${this.computeTwoDigitNumber(centiseconds)}`;}}
+
+        
